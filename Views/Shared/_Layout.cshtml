@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Turnos</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="~/css/materialize.min.css"  media="screen,projection"/>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+
+  <nav>
+    <div class="nav-wrapper grey darken-3">
+      <a href="#!" class="brand-logo center">Sistema de Turnos</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a asp-controller="Home" asp-action="Index">Inicio</a></li>
+        <li><a asp-controller="Especialidad" asp-action="Index">Espeacialidad</a></li>
+        <li><a asp-controller="Paciente" asp-action="Index">Paciente</a></li>
+        <li><a asp-controller="Medico" asp-action="Index">Medico</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <ul class="sidenav" id="mobile-demo">
+     <li><a asp-controller="Home" asp-action="Index">Inicio</a></li>
+     <li><a asp-controller="Especialidad" asp-action="Index">Espeacialidad</a></li>
+     <li><a asp-controller="Paciente" asp-action="Index">Paciente</a></li>
+     <li><a asp-controller="Medico" asp-action="Index">Medico</a></li>
+  </ul>
+
+    </header>
+    <div class="container">
+        <!--Esta funcion de aqui RenderBody es la que muestra las vistas que son llamadas por el controlador.-->
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2024 - Turnos - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="~/js/materialize.min.js"></script>
+    @RenderSection("Scripts", required: false)
+    <!-- De esta manera se inicializa la funcion para activar el menu responsive.-->
+    <script>
+        $(document).ready(function(){
+            $('.sidenav').sidenav();
+        })
+    </script>
+</body>
+</html>

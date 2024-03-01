@@ -1,0 +1,45 @@
+@model Turnos.Models.Paciente
+
+<h4>Pacientes</h4>
+
+<div>
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly"></div> <!--Para validar el formulario-->
+        <!--Campo del Nombre-->
+        <div>
+            <label asp-for="Nombre"></label>
+            <input asp-for="Nombre" />
+            <span asp-validation-for="Nombre"></span> <!--Este span sera usado para validar con posterioridad el campo--
+        </div>
+        <!--Campo del Apellido-->
+        <div>
+            <label asp-for="Apellido"></label>
+            <input asp-for="Apellido" />
+            <span asp-validation-for="Apellido"></span>
+        </div>
+        <!--Campo de la Direccion-->
+        <div>
+            <label asp-for="Direccion"></label>
+            <input asp-for="Direccion" />
+            <span asp-validation-for="Direccion"></span>
+        </div>
+        <!--Campo del Telefono-->
+        <div>
+            <label asp-for="Telefono"></label>
+            <input asp-for="Telefono" />
+            <span asp-validation-for="Telefono"></span>
+        </div>
+        <!--Campo del Correo-->
+        <div>
+            <label asp-for="Email"></label>
+            <input asp-for="Email" />
+            <span asp-validation-for="Email"></span>
+        </div>
+        <div>
+            <input type="submit" value="Guardar" />
+        </div>
+    </form>
+    <div>
+        <a asp-action="Index">Volver</a>
+    </div>
+</div>

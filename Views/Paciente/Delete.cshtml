@@ -1,0 +1,53 @@
+@model Turnos.Models.Paciente
+
+<h3> ¿Esta usted seguro de eliminar el siguiente registro?</h3>
+
+<div>
+    <dl>
+
+        <!--Nombre -->
+        <dt>
+            @Html.DisplayNameFor(modelo => modelo.Nombre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(modelo => modelo.Nombre)
+        </dd>
+
+        <!--Apellido -->
+        <dt>
+            @Html.DisplayNameFor(modelo => modelo.Apellido)
+        </dt>
+        <dd>
+            @Html.DisplayFor(modelo => modelo.Apellido)
+        </dd>
+
+        <!--Direccion -->
+        <dt>
+            @Html.DisplayNameFor(modelo => modelo.Direccion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(modelo => modelo.Direccion)
+        </dd>
+
+        <!--Telefono -->
+        <dt>
+            @Html.DisplayNameFor(modelo => modelo.Telefono)
+        </dt>
+        <dd>
+            @Html.DisplayFor(modelo => modelo.Telefono)
+        </dd>
+
+        <!--Email -->
+        <dt>
+            @Html.DisplayNameFor(modelo => modelo.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(modelo => modelo.Email)
+        </dd>
+    </dl>
+    <form asp-action="Delete">
+        <input type="hidden"  asp-for="IdPaciente" />
+        <input type="submit" value="Eliminar" />
+        <a asp-action="Index">Volver</a>
+    </form>
+</div>

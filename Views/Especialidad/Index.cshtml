@@ -1,0 +1,33 @@
+@*Aqui agragamos una estructura de datos que tendra la informacion que se le pasa mediente el metodo index*@
+@model IEnumerable<Turnos.Models.Especialidad> //Aqui se agrega la referencia al modelo atraves de la directiva model
+<!--El objeto IEnumerable se usa como estructura de datos para poder iterar en los datos de la tabla-->
+
+<p>
+    <a asp-action="Create">Nuevo</a>
+</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @*Aqui colocaremos, mas adelante el codigo para mostrar los registros de la base de datos*@
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IdEspecialidad">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@item.IdEspecialidad">Eliminar</a>    
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
