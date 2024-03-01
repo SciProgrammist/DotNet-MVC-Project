@@ -5,7 +5,7 @@
 </p>
 <table class="responsive-table highlight z-depth-3 blue lighten-5">
     <thead class="blue darken-1 white-text">
-        <tr>
+        <tr class="center">
             <th>
                 @Html.DisplayNameFor(model => model.Nombre)
             </th>
@@ -22,10 +22,10 @@
                 @Html.DisplayNameFor(model => model.Email)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HorarioAtencionDesde)
+                @Html.DisplayNameFor(model => model.HorarioAtencionDesde) 
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HorarioAtencionHasta)
+                @Html.DisplayNameFor(model => model.HorarioAtencionHasta) 
             </th>
             <th></th>
         </tr>
@@ -49,10 +49,10 @@
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.HorarioAtencionDesde)
+                @Html.DisplayFor(modelItem => item.HorarioAtencionDesde) 
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.HorarioAtencionHasta)
+                @Html.DisplayFor(modelItem => item.HorarioAtencionHasta) 
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.IdMedico"><i class="material-icons">edit</i></a> 
