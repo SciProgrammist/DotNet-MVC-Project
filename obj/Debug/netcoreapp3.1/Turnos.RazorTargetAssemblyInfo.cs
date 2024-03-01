@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyProductAttribute("Turnos")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cdac7170ca638868ad681f9c5c4c0084dee5b677")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+46f502aba386c82daa4680595c8ec828c6f3ef55")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Turnos.Views")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
