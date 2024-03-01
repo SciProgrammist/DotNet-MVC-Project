@@ -157,3 +157,4 @@ C:\Users\danie\Downloads\Seyer Software Solutions\DotNet Core Crash Course\Labor
 C:\Users\danie\Downloads\Seyer Software Solutions\DotNet Core Crash Course\Laboratory\Turnos\obj\Debug\netcoreapp3.1\Razor\Views\Medico\Details.cshtml.g.cs
 C:\Users\danie\Downloads\Seyer Software Solutions\DotNet Core Crash Course\Laboratory\Turnos\obj\Debug\netcoreapp3.1\Razor\Views\Medico\Edit.cshtml.g.cs
 C:\Users\danie\Downloads\Seyer Software Solutions\DotNet Core Crash Course\Laboratory\Turnos\obj\Debug\netcoreapp3.1\Razor\Views\Medico\Index.cshtml.g.cs
+C:\Users\danie\Downloads\Seyer Software Solutions\DotNet Core Crash Course\Laboratory\Turnos\obj\Debug\netcoreapp3.1\Turnos.sourcelink.json
