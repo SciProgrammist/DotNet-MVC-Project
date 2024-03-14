@@ -3,18 +3,24 @@
 <h4>Especialidad</h4>
 
 <div>
-    <form asp-action="Create">
-        <div asp-validation-summary="ModelOnly"></div>
+    <form class="col s12" asp-action="Create">
         <div>
-            <label asp-for="Descripcion"></label>
-            <input asp-for="Descripcion">
-            <span asp-validation-for="Descripcion"></span> <!--Esta etiqueta es la que hace la validacion del campo input-->
+            <div class="input-field col s6">
+                <i class="material-icons prefix">subject</i>
+                <input asp-for="Descripcion" type="text" class="validate">
+                <label asp-for="Descripcion"></label>
+                <span asp-validation-for="Descripcion" ></span>
+            </div>
         </div>
-        <div>
-            <input type="submit" value="Guardar" />
+        <div class="row">
+            <div class="col s6 m6">
+                <button class="btn waves-effect waves-light cyan accent-4" type="submit" name="action">Guardar
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+            <div class="col s6 m6">
+                <a class="waves-effect waves-light btn grey darken-4" asp-action="Index"><i class="material-icons left">undo</i>Volver</a>
+            </div>
         </div>
     </form>
-</div>
-<div>
-    <a asp-action="Index">Volver</a>
 </div>
