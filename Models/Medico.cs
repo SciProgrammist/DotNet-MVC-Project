@@ -35,12 +35,20 @@ namespace Turnos.Models
         [Display (Name = "Horario hasta")]
         [DataType (DataType.Time)]
         [DisplayFormat (DataFormatString = "{0:hh:mm tt}", ApplyFormatInEditMode = true)]
-
         public DateTime HorarioAtencionHasta { get; set; }
 
         /* Para relacionarlo con una especialidad (Entidad Especialidad)
            MedicoEspecialidad una a muchos */
         public List<MedicoEspecialidad> MedicoEspecialidad { get; set; }
+
+        /*
+         * Aqui se esta definiendo una propiedad, la cual tiene el modelo turno y su tipo dato es list.
+         * esto es para que entityframework pueda realizar la restriccion entre la tabla paciente y la tabla turno
+         * lo que seria igual a que un paciente este relacionado con multiples turnos.
+         *
+         */
+
+        public List<Turno> Turno { get; set; }
         
 
     }
