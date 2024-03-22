@@ -27,43 +27,38 @@ namespace Turnos.Controllers
 
         // El index: 
 
-        public IActionResult Index() 
+             public IActionResult Index()
         {
-            /*
-             * Aqui se estan definiendo en este objeto la lista de todos los medicos que estan disponibles en el sistema.
-             * para mostrarla en un listbox desplegable en la vista turnos.
-             *
-             */
-
-            ViewData["IdMedico"] = new SelectList((
-
-                // sub-quary en la entidad medico.
-                from medico in _context.Medico.ToList() 
-                // SelectList(System.Collections.IEnumerable items, aqui tambien se devuelven las propiedades seleccionadas 
-                //y se les asigna el objeto NombreCompleto.
-                select new { idMedico = medico.IdMedico, NombreCompleto = medico.Nombre + " " + medico.Apellido}), 
-                // String dataValueField
-                "IdMedico",
-                // String dataTextField
-                "NombreCompleto"
-                );
-
-            ViewData["IdPaciente"] = new SelectList((
-
-                // sub-quary en la entidad medico.
-                from paciente in _context.Paciente.ToList() 
-                // SelectList(System.Collections.IEnumerable items, aqui tambien se devuelven las propiedades seleccionadas 
-                //y se les asigna el objeto NombreCompleto.
-                select new { idMedico = paciente.IdPaciente, NombreCompleto = paciente.Nombre + " " + paciente.Apellido}), 
-                // String dataValueField
-                "IdPaciente",
-                // String dataTextField
-                "NombreCompleto"
-                );
-
-
+            ViewData["IdMedico"] = new SelectList((from medico in _context.Medico.ToList() select new { IdMedico = medico.IdMedico, NombreCompleto = medico.Nombre + " " + medico.Apellido}),"IdMedico","NombreCompleto");
+            ViewData["IdPaciente"] = new SelectList((from paciente in _context.Paciente.ToList() select new { IdPaciente = paciente.IdPaciente, NombreCompleto = paciente.Nombre + " " + paciente.Apellido}),"IdPaciente","NombreCompleto");
             return View();
         }
+
+        // public IActionResult Index() 
+        // {
+        //     /*
+        //      * Aqui se estan definiendo en este objeto la lista de todos los medicos que estan disponibles en el sistema.
+        //      * para mostrarla en un listbox desplegable en la vista turnos.
+        //      *
+        //      */
+
+        //     ViewData["IdMedico"] = new SelectList((
+
+        //         // sub-quary en la entidad medico.
+        //         from medico in _context.Medico.ToList() 
+        //         // SelectList(System.Collections.IEnumerable items, aqui tambien se devuelven las propiedades seleccionadas 
+        //         //y se les asigna el objeto NombreCompleto.
+        //         select new { idMedico = medico.IdMedico, NombreCompleto = medico.Nombre + " " + medico.Apellido}),"IdMedico","NombreCompleto");
+        //         // select new { idMedico = medico.IdMedico, NombreCompleto = medico.Nombre + " " + medico.Apellido}), 
+        //         //  String dataValueField
+        //         // "IdMedico",
+        //         //  String dataTextField
+        //         // "NombreCompleto"
+        //         // );
+
+         
+
+        // }
 
         // Aqui se esta creando un metodo o un endpoint, que recibe un parametro de tipo integer que se llama idMedico, y devuelve un JsonResult
         public  JsonResult ObtnerTurnos(int idMedico) 

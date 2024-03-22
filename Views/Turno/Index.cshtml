@@ -1,0 +1,17 @@
+@model Turnos.Models.Turno
+
+@{
+    ViewBag.Title = "Asignacion de Turnos";
+}
+
+<div class="row">
+    <div class="col s6 "> <!--Esta clase lo que quiere decir es que se ocupen 6 lugares dentro de la etiqueta div en tamaño small.-->
+        <label asp-for="IdMedico">Médico</label>
+        <select asp-for="IdMedico" asp-items="ViewBag.IdMedico"></select>
+        <!--Esta etiqueta Select nos trae la lista de medicos que ya estan en nuestro modelo.-->
+    </div>
+    <div class="col s6">
+        <label asp-for="IdPaciente">Paciente</label>
+        <select asp-for="IdPaciente" asp-items="ViewBag.IdPaciente"></select>
+    </div>
+</div>
