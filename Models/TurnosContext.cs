@@ -24,6 +24,8 @@ namespace Turnos.Models
 
         public DbSet<Turno> Turno { get; set; }
 
+        //DbSet para el modelo Login
+        public DbSet<Login> Login { get; set;}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -184,8 +186,30 @@ namespace Turnos.Models
             .WithMany( p => p.Turno)
             .HasForeignKey(p => p.IdMedico);
 
+            modelBuilder.Entity<Login>(entidad => 
+            {
+                entidad.ToTable("Login");
 
+                entidad.HasKey( l => l.LoginId);
+
+                entidad.Property(l => l.Usuario)
+                .HasMaxLength(50)
+                .IsRequired();
+
+                entidad.Property( l=> l.Password)
+                .HasMaxLength(100)
+                .IsRequired();
+
+            });
             /**Esta clase usa el entity framework para crear nuestra entidad en la base de datos. */
+
+            /* Nota: Ejecuta los siguientes comandos para realizar la Migracion del Modelo Login:
+             *
+             * dotnet ef migrations add migracionLogin
+             * dotnet ef database update
+             *
+             */
+
 
         }
 

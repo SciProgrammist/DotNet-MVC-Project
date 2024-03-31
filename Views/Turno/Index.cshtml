@@ -31,6 +31,10 @@
                 <label>Fin</label>
                 <input type="text" id="txtFechaHoraFin" readonly="readonly" />
             </div>
+            <div>
+                <label>Paciente</label>
+                <input type="text" id="txtPaciente" readonly="readonly" />
+            </div>
         </form>
     </div>
     <div class="modal-footer">
@@ -81,6 +85,7 @@
                                 idMedico: v.idMedico,
                                 start: moment(v.fechaHoraInicio),
                                 end: v.fechaHoraFin != null ? moment(v.fechaHoraFin): null,
+                                paciente: v.paciente,
                             });
                         })
 
@@ -195,9 +200,11 @@
                 if (turnoSeleccionado.idTurno == 0) {
                     $('#btnGuardar').show();
                     $('#btnEliminar').hide();
+                    $('#txtPaciente').val($('#IdPaciente option:selected').text());
                 } else { // De caso contratio se mostraran los siguientes botones:
                     $('#btnGuardar').hide();
                     $('#btnEliminar').show();
+                    $('#txtPaciente').val(turnoSeleccionado.paciente);
                 }
                 $('#ModalTurno').modal('open');
             }

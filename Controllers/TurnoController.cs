@@ -63,10 +63,19 @@ namespace Turnos.Controllers
         // Aqui se esta creando un metodo o un endpoint, que recibe un parametro de tipo integer que se llama idMedico, y devuelve un JsonResult
         public  JsonResult ObtenerTurnos(int idMedico) 
         {
-            List<Turno> turnos = new List<Turno>();
+            // turnos = new List<Turno>();
 
-            //Aca se le esta llenando al objeto turnos y se le asigna la lista de turnos que tienen el objeto medico.
-            turnos = _context.Turno.Where( t => t.IdMedico == idMedico) .ToList();
+              //Aca se le esta llenando al objeto turnos y se le asigna la lista de turnos que tienen el objeto medico.
+            var turnos = _context.Turno.Where( t => t.IdMedico == idMedico)
+            .Select(t => new {
+                t.IdTurno,
+                t.IdMedico,
+                t.IdPaciente,
+                t.FechaHoraInicio,
+                t.FechaHoraFin,
+                paciente = t.Paciente.Nombre + ", " + t.Paciente.Apellido,
+            })
+            .ToList();
             
 
             return Json(turnos); 

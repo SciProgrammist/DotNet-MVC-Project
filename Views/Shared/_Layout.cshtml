@@ -1,4 +1,14 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http;
+@{
+  //Aqui se definira el codigo que va a validar la sesion para todaas las vistas que usen _Layout.schtml.
+  if(Context.Session.GetString("usuario")== null)
+  {
+    Context.Response.Redirect("/Login");
+  }
+
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -23,6 +33,7 @@
         <li><a asp-controller="Paciente" asp-action="Index">Paciente</a></li>
         <li><a asp-controller="Medico" asp-action="Index">Medico</a></li>
         <li><a asp-controller="Turno" asp-action="Index">Turnos</a></li>
+        <li><a asp-controller="Login" asp-action="Logout">Logout</a></li>
       </ul>
     </div>
   </nav>
@@ -33,6 +44,7 @@
      <li><a asp-controller="Paciente" asp-action="Index">Paciente</a></li>
      <li><a asp-controller="Medico" asp-action="Index">Medico</a></li>
      <li><a asp-comtroller="Turno" asp-action="Index">Turnos</a></li>
+     <li><a asp-controller="Login" asp-action="Logout">Logout</a></li>
   </ul>
 
     </header>
