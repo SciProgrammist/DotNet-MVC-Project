@@ -1,85 +1,77 @@
 @model Turnos.Models.Medico
-<!DOCTYPE html>
 
-<html>
-
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Edit</title>
-</head>
-
-<body>
-
-    <h4>Medico</h4>
-    <hr />
-    <div class="row">
-        <div>
-            <form asp-action="Edit">
-                <div>
-                    <form class="col s12" asp-action="Create">
-                        <div asp-validation-summary="ModelOnly"></div>
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <i class="material-icons prefix">account_circle</i>
-                                <input asp-for="Nombre" type="text" class="validate">
-                                <label asp-for="Nombre"></label>
-                                <span asp-validation-for="Nombre"></span>
-                            </div>
-                            <div class="input-field col s6">
-                                <input asp-for="Apellido" type="text" class="validate">
-                                <label asp-for="Apellido"></label>
-                                <span asp-validation-for="Apellido"></span>
-                            </div>
-                        </div>
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">markunread_mailbox</i>
-                            <input asp-for="Direccion" type="text" class="validate">
-                            <label asp-for="Direccion"></label>
-                            <span asp-validation-for="Direccion"></span>
-                        </div>
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">phone</i>
-                            <input asp-for="Telefono" type="tel" class="validate">
-                            <label asp-for="Telefono">Telephone</label>
-                            <span asp-validation-for="Telefono"></span>
-                        </div>
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">local_post_office</i>
-                            <input asp-for="Email" type="tel" class="validate">
-                            <label asp-for="Email"></label>
-                            <span asp-validation-for="Email"></span>
-                        </div>
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">event_note</i>
-                            <label asp-for="HorarioAtencionDesde"></label>
-                            <input asp-for="HorarioAtencionDesde" type="text" class="timepicker">
-                            <span asp-validation-for="HorarioAtencionDesde"></span>
-                        </div>
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">event_note</i>
-                            <label asp-for="HorarioAtencionHasta"></label>
-                            <input asp-for="HorarioAtencionHasta" type="text" class="timepicker">
-                            <span asp-validation-for="HorarioAtencionHasta"></span>
-                        </div>
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">star_rate</i>
-                            <select name="IdEspecialidad" asp-items="ViewBag.ListaEspecialidades"></select>
-                        </div>
-                        <div class="row">
-                            <div class="col s6 m6">
-                                <button class="btn waves-effect waves-light cyan accent-4" type="submit"
-                                    name="action">Guardar
-                                    <i class="material-icons right">send</i>
-                                </button>
-                            </div>
-                            <div class="col s6 m6">
-                                <a class="waves-effect waves-light btn grey darken-4" asp-action="Index"><i
-                                        class="material-icons left">undo</i>Volver</a>
-                            </div>
-                        </div>
-                    </form>
-                </form>
+<h4>Medico</h4>
+<hr />
+<div class="row">
+    <div>
+        <form class="col s12" asp-action="Edit">
+            <div class="row">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="IdMedico" />
+                <div class="row">
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input asp-for="Nombre" type="text" class="validate">
+                        <label asp-for="Nombre"></label>
+                        <span asp-validation-for="Nombre"></span>
+                    </div>
+                    <div class="input-field col s6">
+                        <input asp-for="Apellido" type="text" class="validate">
+                        <label asp-for="Apellido"></label>
+                        <span asp-validation-for="Apellido"></span>
+                    </div>
                 </div>
-           </div>
-</body>
-</html>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">markunread_mailbox</i>
+                        <input asp-for="Direccion" type="text" class="validate">
+                        <label asp-for="Direccion"></label>
+                        <span asp-validation-for="Direccion"></span>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">phone</i>
+                        <input asp-for="Telefono" type="tel" class="validate">
+                        <label asp-for="Telefono">Telephone</label>
+                        <span asp-validation-for="Telefono"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">local_post_office</i>
+                        <input asp-for="Email" type="tel" class="validate">
+                        <label asp-for="Email"></label>
+                        <span asp-validation-for="Email"></span>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">star_rate</i>
+                        <select name="IdEspecialidad" asp-items="ViewBag.ListaEspecialidades"></select>
+                    </div>
+
+                </div>
+                <div class="row">
+                     <div class="input-field col s6">
+                        <i class="material-icons prefix">event_note</i>
+                        <label asp-for="HorarioAtencionDesde"></label>
+                        <input asp-for="HorarioAtencionDesde" type="text" class="timepicker">
+                        <span asp-validation-for="HorarioAtencionDesde"></span>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">event_note</i>
+                        <label asp-for="HorarioAtencionHasta"></label>
+                        <input asp-for="HorarioAtencionHasta" type="text" class="timepicker">
+                        <span asp-validation-for="HorarioAtencionHasta"></span>
+                    </div> 
+                </div>
+                <div class="row">
+                    <div class="col s6 m6">
+                        <button class="btn waves-effect waves-light cyan accent-4" type="submit" name="action">Guardar
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                    <div class="col s6 m6">
+                        <a class="waves-effect waves-light btn grey darken-4" asp-action="Index"><i
+                                class="material-icons left">undo</i>Volver</a>
+                    </div>
+                </div>
+        </form>
+    </div>

@@ -61,7 +61,7 @@ namespace Turnos.Controllers
         // }
 
         // Aqui se esta creando un metodo o un endpoint, que recibe un parametro de tipo integer que se llama idMedico, y devuelve un JsonResult
-        public  JsonResult ObtnerTurnos(int idMedico) 
+        public  JsonResult ObtenerTurnos(int idMedico) 
         {
             List<Turno> turnos = new List<Turno>();
 
