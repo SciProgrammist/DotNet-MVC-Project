@@ -1,4 +1,12 @@
 @model Turnos.Models.Turno
+<!--
+Como esta vista solo maneja peticiones ajax para acceder a los enpoints se tiene que 
+ hacer los siguientes pasos para que se puede genera el elemento Token del atributo headers.
+-->
+@Html.AntiForgeryToken();
+
+<!--Esto se usa en el caso que no se tenga un formulario, y obligar a la vista que cree el elemento token.-->
+
 
 @{
     ViewBag.Title = "Asignacion de Turnos";
@@ -226,6 +234,7 @@
                     type: 'POST',
                     url: 'Turno/GrabarTurno',
                     data: {'turno': data},
+                    headers: { 'RequestVerificationToken' : $('input[name="__RequestVerificationToken"]').val()},
                     success: function (e) {
                         if (e.ok) {
                             ObtenerTurnosYActualizar($('#IdMedico').val());
@@ -246,6 +255,7 @@
                         type: "POST",
                         url: "Turno/EliminarTurno",
                         data: { 'IdTurno' : turnoSeleccionado.idTurno },
+                        headers: { 'RequestVerificationToken' : $('input[name="__RequestVerificationToken"]').val()},
                         success: function (e) {
                             if (e.ok) {
                                 ObtenerTurnosYActualizar($('#IdMedico').val());

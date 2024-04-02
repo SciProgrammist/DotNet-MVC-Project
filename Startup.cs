@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Turnos.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Mvc;
 
 
 namespace Turnos
@@ -37,7 +38,9 @@ namespace Turnos
                 options.Cookie.HttpOnly = true;
             });
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews( options =>
+            options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute())
+            );
             
             //La inyeccion de dependencia es agregar servicios a nuestro contenedor, o a la aplicacion
             services.AddDbContext<TurnosContext>(opciones => opciones.UseSqlServer(Configuration.GetConnectionString("TurnosContext")));
@@ -46,13 +49,19 @@ namespace Turnos
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //Aqui se pueden definiar las paginas para las excepciones.
             if (env.IsDevelopment())
             {
+                //Middlewear que devuelve una pagina con la excepcion y la descripcion del error.
                 app.UseDeveloperExceptionPage();
-            }
-            else
+            } 
+            if (env.IsProduction())
             {
+                /** El middlewear, UseExceptionHandler, nos redirije al controlador Home y al 
+                 *  action o endpoint Error.
+                 */
                 app.UseExceptionHandler("/Home/Error");
+
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
