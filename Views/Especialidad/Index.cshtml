@@ -3,15 +3,16 @@
 <!--El objeto IEnumerable se usa como estructura de datos para poder iterar en los datos de la tabla-->
 
 <p>
-    <a asp-action="Create">Nuevo</a>
+    <a asp-action="Create" class="btn-floating btn-large green darken-1"><i class="material-icons">person_add</i></a>
 </p>
 
-<table>
-    <thead>
+<table class="responsive-table highlight z-depth-3 orange lighten-5">
+    <thead class="orange darken-1 white-text">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Descripcion)
             </th>
+            <th style="width: 80px;"></th>
         </tr>
     </thead>
     <tbody>

@@ -1,25 +1,35 @@
 @model Turnos.Models.Especialidad
 
 <h4>Especialidad</h4>
+<hr />
+<br />
+
 <div>
-    <form asp-action="Edit">
-        <!-- Esta etiqueta sirve par validar todos nuestros elementos html que tengamos
+    <form class="col s12" asp-action="Edit">
+         <!-- Esta etiqueta sirve par validar todos nuestros elementos html que tengamos
         en nmuestro formulario, con esto podremos validar si nos colocan algun valor 
         vacio en los inputs del formulario -->
         <div asp-validation-summary="ModelOnly"></div>
-        <!--En este input se tiene cargado el id -->
+         <!--En este input se tiene cargado el id -->
         <input type="hidden" asp-for="IdEspecialidad" />
         <div>
-            <label asp-for="Descripcion"></label>
-            <!--En este input se tendra la descripcion--->
-            <input asp-for="Descripcion"/>
-            <span asp-validation-for="Descripcion"></span>
+            <div class="input-field col s6">
+                <i class="material-icons prefix">subject</i>
+                <!--En este input se tendra la descripcion--->
+                <input asp-for="Descripcion" type="text" class="validate">
+                <label asp-for="Descripcion"></label>
+                <span asp-validation-for="Descripcion"></span>
+            </div>
         </div>
-        <div>
-            <input type="submit" value="Guardar">
+        <div class="row">
+            <div class="col s6 m6">
+                <button class="btn waves-effect waves-light cyan accrent-4" type="submit" name="action">Guardar
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+            <div class="col s6 m6">
+                <a class="waves-effect waves-light btn grey darken-4" asp-action="Index"><i class="material-icons left">undo</i>Volver</a>
+            </div>
         </div>
     </form>
-</div>
-<div>
-    <a asp-action="Index">Volver</a>
 </div>

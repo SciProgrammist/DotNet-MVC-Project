@@ -62,6 +62,7 @@ namespace Turnos.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("IdMedico,Nombre,Apellido,Direccion,Telefono,Email,HorarioAtencionDesde,HorarioAtencionHasta")] Medico medico, int IdEspecialidad)
         {
+            ViewData["ListaEspecialidades"] = new SelectList(_context.Especialidad, "IdEspecialidad","Descripcion",IdEspecialidad);
             if (ModelState.IsValid)
             {
                 //En esta primera instancia se tiene la persistencia en la base de datos de la Entidad Medico
@@ -99,9 +100,14 @@ namespace Turnos.Controllers
                 return NotFound();
             }
 
-            ViewData["ListaEspecialidades"] = new SelectList( 
-                _context.Especialidad, "IdEspecialidad", "Descripcion", medico.MedicoEspecialidad[0].IdEspecialidad
+            SelectList especialidades = new SelectList
+            (
+                _context.Especialidad, "IdEspecialidad",
+                 "Descripcion", 
+                 medico.MedicoEspecialidad.Count > 0? medico.MedicoEspecialidad[0].IdEspecialidad : 0
             );
+
+            ViewData["ListaEspecialidades"] = especialidades;
 
 
             return View(medico);
@@ -114,6 +120,7 @@ namespace Turnos.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("IdMedico,Nombre,Apellido,Direccion,Telefono,Email,HorarioAtencionDesde,HorarioAtencionHasta")] Medico medico, int IdEspecialidad)
         {
+            ViewData["ListaEspecialidades"] = new SelectList(_context.Especialidad, "IdEspecialidad","Descripcion",IdEspecialidad);
             if (id != medico.IdMedico)
             {
                 return NotFound();
@@ -136,8 +143,10 @@ namespace Turnos.Controllers
                     // de escribir sobre ella otro campo.
 
                     _context.Remove(medicoEspecialidad); // se elimina el registro que se obtuvo en la consulta anterior a la bd.
-
+                    await _context.SaveChangesAsync();
+                   
                     medicoEspecialidad.IdEspecialidad = IdEspecialidad;
+                    
                     _context.Add(medicoEspecialidad);
                     await _context.SaveChangesAsync();
 
@@ -198,5 +207,18 @@ namespace Turnos.Controllers
         {
             return _context.Medico.Any(e => e.IdMedico == id);
         }
+
+         public string TraerHorarioAtencionDesde(int idMedico)
+        {
+            var HorarioAtencionDesde = _context.Medico.Where( m => m.IdMedico == idMedico).FirstOrDefault().HorarioAtencionDesde;
+            return HorarioAtencionDesde.Hour + ":" + HorarioAtencionDesde.Minute; 
+        }
+
+           public string TraerHorarioAtencionHasta(int idMedico)
+        {
+            var HorarioAtencionHasta = _context.Medico.Where( m => m.IdMedico == idMedico).FirstOrDefault().HorarioAtencionHasta;
+            return HorarioAtencionHasta.Hour + ":" + HorarioAtencionHasta.Minute; 
+        }
+    
     }
 }

@@ -7,7 +7,7 @@ namespace Turnos.Models
     {
         //Aqui se le envia al constructor opciones por default 
         public TurnosContext(DbContextOptions<TurnosContext> opciones)
-        : base (opciones)
+        : base(opciones)
         {
 
         }
@@ -22,21 +22,25 @@ namespace Turnos.Models
         //DbSet para la relacion de las entidades Medico con Especialidad.
         public DbSet<MedicoEspecialidad> MedicoEspecialidad { get; set; }
 
+        public DbSet<Turno> Turno { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder) 
+        //DbSet para el modelo Login
+        public DbSet<Login> Login { get; set;}
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             /*
              * Recordar que las firmas que contiene la palabra reservada override es para que se tome 
              * en cuenta el nuevo metodo definido y no el de por default.   
              *         
              */
-            modelBuilder.Entity<Especialidad>(entidad => 
+            modelBuilder.Entity<Especialidad>(entidad =>
             {
                 entidad.ToTable("Especialidad"); //Aqui le estamos indicando que nuestra tabla se llamara especialidad
-                
+
                 entidad.HasKey(e => e.IdEspecialidad); //Con esta linea le indicamos que la primarykey de la tabla sera el campo id de la especialidad
 
-                entidad.Property( e => e.Descripcion)
+                entidad.Property(e => e.Descripcion)
                 .IsRequired()
                 .HasMaxLength(200)
                 .IsUnicode(false); //Aqui se definieron varias propiedades para el campo descripcion
@@ -44,11 +48,11 @@ namespace Turnos.Models
             }
             );
 
-            modelBuilder.Entity<Paciente>(entidad => 
+            modelBuilder.Entity<Paciente>(entidad =>
             {
                 entidad.ToTable("Paciente");
 
-                entidad.HasKey( p => p.IdPaciente);
+                entidad.HasKey(p => p.IdPaciente);
 
                 entidad.Property(p => p.Nombre)
                 .IsRequired()
@@ -65,7 +69,7 @@ namespace Turnos.Models
                 .HasMaxLength(250)
                 .IsUnicode(true);
 
-                entidad.Property( p => p.Telefono)
+                entidad.Property(p => p.Telefono)
                 .IsRequired()
                 .HasMaxLength(20)
                 .IsUnicode(false);
@@ -77,8 +81,9 @@ namespace Turnos.Models
             }
             );
 
-            modelBuilder.Entity<Medico>(entidad => {
-                
+            modelBuilder.Entity<Medico>(entidad =>
+            {
+
                 entidad.ToTable("Medico");
                 entidad.HasKey(m => m.IdMedico);
                 entidad.Property(m => m.Nombre)
@@ -101,30 +106,30 @@ namespace Turnos.Models
                 .HasMaxLength(20)
                 .IsUnicode(false);
 
-                entidad.Property( m => m.Email)
+                entidad.Property(m => m.Email)
                 .IsRequired()
                 .HasMaxLength(50)
                 .IsUnicode(false);
 
-                entidad.Property( m => m.HorarioAtencionDesde)
+                entidad.Property(m => m.HorarioAtencionDesde)
                 .IsRequired()
                 .IsUnicode(false);
 
-                entidad.Property( m=> m.HorarioAtencionHasta)
+                entidad.Property(m => m.HorarioAtencionHasta)
                 .IsRequired()
                 .IsUnicode(false);
 
 
-            }            
+            }
             );
 
             //Normalizando relacion mucho a muchos entra tabla Medico y Especialidad
 
-            modelBuilder.Entity<MedicoEspecialidad>().HasKey(x => new {x.IdMedico, x.IdEspecialidad});
-            
-            modelBuilder.Entity<MedicoEspecialidad>().HasOne( x => x.Medico)
-            .WithMany( p => p.MedicoEspecialidad) 
-            .HasForeignKey( p => p.IdMedico); 
+            modelBuilder.Entity<MedicoEspecialidad>().HasKey(x => new { x.IdMedico, x.IdEspecialidad });
+
+            modelBuilder.Entity<MedicoEspecialidad>().HasOne(x => x.Medico)
+            .WithMany(p => p.MedicoEspecialidad)
+            .HasForeignKey(p => p.IdMedico);
 
             /* En la linea 123, se esta definiendo una primary key compuesta por los campos de Id de las tablas a relacionar.
              * En la linea 125, se define una restriccion entre la tabla medico y la tabla MedicoEspecialidad, 
@@ -132,19 +137,82 @@ namespace Turnos.Models
              * hasForeignKey se establece el campo que formara parte de la foreing key.
              */
 
-             //En el video no menciona pero al final lo que se hace con esta tabla extra es normalizar la relaicon muchos a muchos
-             //que existen entre las entidades Medico y Especialidad, es por eso las lineas de codigo de abajo:
+            //En el video no menciona pero al final lo que se hace con esta tabla extra es normalizar la relaicon muchos a muchos
+            //que existen entre las entidades Medico y Especialidad, es por eso las lineas de codigo de abajo:
 
-            modelBuilder.Entity<MedicoEspecialidad>().HasOne( x => x.Especialidad)
-            .WithMany( p => p.MedicoEspecialidad) 
-            .HasForeignKey( p => p.IdEspecialidad); 
+            modelBuilder.Entity<MedicoEspecialidad>().HasOne(x => x.Especialidad)
+            .WithMany(p => p.MedicoEspecialidad)
+            .HasForeignKey(p => p.IdEspecialidad);
+
+
+            //Aqui se esta definiendo la entidad Turno en la base de datos.
+
+            modelBuilder.Entity<Turno>(entidad =>
+            {
+                entidad.ToTable("Turno");
+                entidad.HasKey(m => m.IdTurno);
+
+                entidad.Property(m => m.IdPaciente)
+                .IsRequired()
+                .IsUnicode(false);
+
+                entidad.Property(m => m.IdMedico)
+                .IsRequired()
+                .IsUnicode(false);
+
+                entidad.Property(m => m.FechaHoraInicio)
+                .IsRequired()
+                .IsUnicode(false);
+
+                entidad.Property(m => m.FechaHoraFin)
+                .IsRequired()
+                .IsUnicode(false);
+
+            });
+
+            /* Aqui se esta definiendo las relaciones que tendra la entidad turno en la base de datos.
+             * Esta es la restriccion entre la tabla paciente y la tabla turno, donde se especifica que 
+             * la relacion sera de uno a muchos, donde un paciente tendra muchos turnos.
+             *
+             */
+
+             modelBuilder.Entity<Turno>().HasOne(x => x.Paciente)
+            .WithMany(p => p.Turno)
+            .HasForeignKey(p => p.IdPaciente);
+
+            //Aca se realiza los mismo pero con la tabla medico.
+
+            modelBuilder.Entity<Turno>().HasOne( x => x.Medico)
+            .WithMany( p => p.Turno)
+            .HasForeignKey(p => p.IdMedico);
+
+            modelBuilder.Entity<Login>(entidad => 
+            {
+                entidad.ToTable("Login");
+
+                entidad.HasKey( l => l.LoginId);
+
+                entidad.Property(l => l.Usuario)
+                .HasMaxLength(50)
+                .IsRequired();
+
+                entidad.Property( l=> l.Password)
+                .HasMaxLength(100)
+                .IsRequired();
+
+            });
+            /**Esta clase usa el entity framework para crear nuestra entidad en la base de datos. */
+
+            /* Nota: Ejecuta los siguientes comandos para realizar la Migracion del Modelo Login:
+             *
+             * dotnet ef migrations add migracionLogin
+             * dotnet ef database update
+             *
+             */
 
 
         }
 
 
-        /**Esta clase usa el entity framework para crear nuestra entidad en la base de datos. */
-
-        
     }
 }

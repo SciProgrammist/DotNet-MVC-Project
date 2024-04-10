@@ -5,7 +5,6 @@ C:\Users\danie\Downloads\Seyer Software Solutions\DotNet Core Crash Course\Labor
 C:\Users\danie\Downloads\Seyer Software Solutions\DotNet Core Crash Course\Laboratory\Turnos\obj\Debug\netcoreapp3.1\Turnos.AssemblyInfoInputs.cache
 C:\Users\danie\Downloads\Seyer Software Solutions\DotNet Core Crash Course\Laboratory\Turnos\obj\Debug\netcoreapp3.1\Turnos.AssemblyInfo.cs
 C:\Users\danie\Downloads\Seyer Software Solutions\DotNet Core Crash Course\Laboratory\Turnos\bin\Debug\netcoreapp3.1\appsettings.Development.json
-C:\Users\danie\Downloads\Seyer Software Solutions\DotNet Core Crash Course\Laboratory\Turnos\bin\Debug\netcoreapp3.1\appsettings.json
 C:\Users\danie\Downloads\Seyer Software Solutions\DotNet Core Crash Course\Laboratory\Turnos\bin\Debug\netcoreapp3.1\Turnos.exe
 C:\Users\danie\Downloads\Seyer Software Solutions\DotNet Core Crash Course\Laboratory\Turnos\bin\Debug\netcoreapp3.1\Turnos.deps.json
 C:\Users\danie\Downloads\Seyer Software Solutions\DotNet Core Crash Course\Laboratory\Turnos\bin\Debug\netcoreapp3.1\Turnos.runtimeconfig.json
@@ -158,3 +157,6 @@ C:\Users\danie\Downloads\Seyer Software Solutions\DotNet Core Crash Course\Labor
 C:\Users\danie\Downloads\Seyer Software Solutions\DotNet Core Crash Course\Laboratory\Turnos\obj\Debug\netcoreapp3.1\Razor\Views\Medico\Edit.cshtml.g.cs
 C:\Users\danie\Downloads\Seyer Software Solutions\DotNet Core Crash Course\Laboratory\Turnos\obj\Debug\netcoreapp3.1\Razor\Views\Medico\Index.cshtml.g.cs
 C:\Users\danie\Downloads\Seyer Software Solutions\DotNet Core Crash Course\Laboratory\Turnos\obj\Debug\netcoreapp3.1\Turnos.sourcelink.json
+C:\Users\danie\Downloads\Seyer Software Solutions\DotNet Core Crash Course\Laboratory\Turnos\obj\Debug\netcoreapp3.1\Razor\Views\Turno\Index.cshtml.g.cs
+C:\Users\danie\Downloads\Seyer Software Solutions\DotNet Core Crash Course\Laboratory\Turnos\obj\Debug\netcoreapp3.1\Razor\Views\Login\Index.cshtml.g.cs
+C:\Users\danie\Downloads\Seyer Software Solutions\DotNet Core Crash Course\Laboratory\Turnos\bin\Debug\netcoreapp3.1\appsettings.Production.json
